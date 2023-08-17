@@ -1,0 +1,27 @@
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 30
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Layout/LineLength:
+  Max: 120
+
+Layout/DotPosition:
+  Enabled: false
+
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
