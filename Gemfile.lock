@@ -62,7 +62,7 @@ DEPENDENCIES
   rspec (~> 3.0)
   rubocop (~> 0.80)
   sensorpush!
-  webmock
+  webmock (~> 3.18)
 
 BUNDLED WITH
    2.2.3
