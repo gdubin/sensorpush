@@ -27,6 +27,18 @@ module Sensorpush
       !accesstoken.nil?
     end
 
+    def gateways
+      uri = URI(BASE_URL + "/devices/gateways")
+      body = {}
+
+      response = Net::HTTP.post(uri, body.to_json, headers)
+      json_object = JSON.parse(response.body)
+
+      json_object.collect do |_key, hash|
+        Sensorpush::Gateway.new(hash)
+      end
+    end
+
     def sensors
       uri = URI(BASE_URL + "/devices/sensors")
       body = {}

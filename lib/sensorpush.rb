@@ -4,6 +4,7 @@ require_relative "sensorpush/version"
 require_relative "sensorpush/client"
 require_relative "sensorpush/sensor"
 require_relative "sensorpush/sample"
+require_relative "sensorpush/gateway"
 
 module Sensorpush
   class Error < StandardError; end

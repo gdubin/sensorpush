@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sensorpush (0.1.0)
+    sensorpush (0.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -56,6 +56,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-22
+  x86_64-darwin-23
 
 DEPENDENCIES
   rake (~> 13.0)

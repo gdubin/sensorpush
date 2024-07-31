@@ -27,6 +27,31 @@ RSpec.describe Sensorpush::Client do
     end
   end
 
+  describe "gateways" do
+    let(:client) { Sensorpush::Client.new({ username: "test@example.com", password: "foobar" }) }
+
+    before(:each) do
+      stub_authorize
+      stub_accesstoken
+    end
+
+    it "returns a list of gateways" do
+      stub_gateways(2)
+
+      client.authenticate
+      gateways = client.gateways
+      expect(gateways.size).to eql(2)
+    end
+
+    it "returns an empty list with zero sensors" do
+      stub_gateways(0)
+
+      client.authenticate
+      gateways = client.gateways
+      expect(gateways.size).to eql(0)
+    end
+  end
+
   describe "sensors" do
     let(:client) { Sensorpush::Client.new({ username: "test@example.com", password: "foobar" }) }
 
@@ -157,6 +182,30 @@ RSpec.describe Sensorpush::Client do
           "Content-Type" => "application/json"
         }).
       to_return(status: status, body: mock_accesstoken_response, headers: {})
+  end
+
+  def stub_gateways(count = 1)
+    gateway_jsons = []
+    count.times do |index|
+      gateway_jsons.push(mock_gateway_json("Gateway#{index}"))
+    end
+
+    if count > 0
+      mock_gateways_response = "{"
+      mock_gateways_response += gateway_jsons.join(",")
+      mock_gateways_response += "}"
+    else
+      mock_gateways_response = "{}"
+    end
+
+    stub_request(:post, "https://api.sensorpush.com/api/v1/devices/gateways").
+      with(
+        body: "{}",
+        headers: {
+          "Accept" => "application/json",
+          "Content-Type" => "application/json"
+        }).
+      to_return(status: 200, body: mock_gateways_response, headers: {})
   end
 
   def stub_sensors(count = 1)

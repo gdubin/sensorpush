@@ -46,4 +46,24 @@ module MockJson
     SAMPLE_JSON
     sample_json
   end
+
+  def mock_gateway_json(name = "Gateway")
+    sample_json = <<~SAMPLE_JSON
+      "#{name}" : {
+          "name" : "#{name}",
+          "last_alert" : "2024-06-07T22:03:31.000Z",
+          "last_seen" : "2024-07-30T13:23:41.000Z",
+          "version" : "1.1.7(35)", 
+          "message" : null, 
+          "paired" : true,
+          "tags" : null,
+          "id" : "fXs63ElRmJiFsoEh+QLMdoGaxABCzMlempG8Z8qikdw="
+      }
+    SAMPLE_JSON
+    sample_json
+  end
+
+  def mock_gateway_list_json
+    "{" + mock_gateway_json("Gateway") + "}"
+  end
 end
